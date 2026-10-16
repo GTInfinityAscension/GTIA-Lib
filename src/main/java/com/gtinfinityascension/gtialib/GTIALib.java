@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import com.gtinfinityascension.gtialib.lang.TrLanguageProvider;
+import com.gtinfinityascension.gtialib.perf.BenchCommand;
 import com.gtinfinityascension.gtialib.tooltip.MultiblockTooltip;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,6 +30,8 @@ public final class GTIALib {
         MultiblockTooltip.init();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(GTIALib::gatherData);
         MinecraftForge.EVENT_BUS.addListener(GTIALib::serverStarting);
+        MinecraftForge.EVENT_BUS.addListener(BenchCommand::register);
+        MinecraftForge.EVENT_BUS.addListener(BenchCommand::onServerTick);
     }
 
     private static void gatherData(GatherDataEvent event) {

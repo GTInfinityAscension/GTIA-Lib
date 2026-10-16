@@ -2,7 +2,7 @@
 
 Shared library of the [GregTech Infinity Ascension](https://github.com/GTInfinityAscension) mods (GTIACore, GTNA, Agronomica and future addons). Minecraft 1.20.1, Forge 47, GTCEu 7.5.3.
 
-> **Status: 0.2.0.** The API may still change before 1.0.
+> **Status: 0.3.0.** The API may still change before 1.0.
 
 ## What it has
 
@@ -11,6 +11,7 @@ Shared library of the [GregTech Infinity Ascension](https://github.com/GTInfinit
 | `lang` | `Tr.of(key, en, pt, zh)` declares a text in English, Portuguese and Chinese at once. `TrLanguageProvider` writes the three lang files in datagen, so a text can't be missing in one language |
 | `tooltip` | `MultiblockTooltip`: the GTNA multiblock layout (fact, Main Function, Auxiliary Module, Running Requirements, Source) |
 | `data` | `Int128` (128-bit counts, from GTLCore via GTNA), `BlockPosLongSet` and `BlockPosHashing` (fast sets and maps of positions for huge structures) |
+| `perf` | `/gtialib bench grid <machine> <count> [input]` places a force-loaded grid of GT machines (kept running when an input item is given) and `/gtialib bench mspt <ticks>` logs the average tick time; used by the modpack's `tools/perf_bench.py` |
 | `test` | GameTest kit: `Previews.place` builds a multiblock from its preview; `Sweeps` checks every multiblock, GT recipe, machine tooltip and translation of a mod; `-Dgtialib.junitReport=<file>` writes JUnit XML for CI |
 
 Planned: registration helpers, the multiblock module system, batched field sync, recipe helpers and measured performance work. See the [developer docs](https://gtinfinityascension.github.io/GTIA-Dev-Doc/).
@@ -22,7 +23,7 @@ repositories {
     maven { url = 'https://gtinfinityascension.github.io/maven/' }
 }
 dependencies {
-    modImplementation("com.gtinfinityascension:gtialib:0.2.0") { transitive = false }
+    modImplementation("com.gtinfinityascension:gtialib:0.3.0") { transitive = false }
 }
 ```
 
