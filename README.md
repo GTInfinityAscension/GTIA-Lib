@@ -2,7 +2,7 @@
 
 Shared library of the [GregTech Infinity Ascension](https://github.com/GTInfinityAscension) mods (GTIACore, GTNA, Agronomica and future addons). Minecraft 1.20.1, Forge 47, GTCEu 7.5.3.
 
-> **Status: 0.3.0.** The API may still change before 1.0.
+> **Status: 0.4.0.** The API may still change before 1.0.
 
 ## What it has
 
@@ -23,7 +23,7 @@ repositories {
     maven { url = 'https://gtinfinityascension.github.io/maven/' }
 }
 dependencies {
-    modImplementation("com.gtinfinityascension:gtialib:0.3.0") { transitive = false }
+    modImplementation("com.gtinfinityascension:gtialib:0.4.0") { transitive = false }
 }
 ```
 

@@ -9,18 +9,20 @@ import net.minecraftforge.data.event.GatherDataEvent;
  */
 public final class TrLanguageProvider extends LanguageProvider {
 
-    private final String prefix;
+    private final String[] prefixes;
     private final String locale;
 
-    public TrLanguageProvider(PackOutput output, String modid, String prefix, String locale) {
+    public TrLanguageProvider(PackOutput output, String modid, String locale, String... prefixes) {
         super(output, modid, locale);
-        this.prefix = prefix;
+        this.prefixes = prefixes;
         this.locale = locale;
     }
 
     @Override
     protected void addTranslations() {
-        for (Tr entry : Tr.entries(prefix)) add(entry.key(), entry.text(locale));
+        for (String prefix : prefixes) {
+            for (Tr entry : Tr.entries(prefix)) add(entry.key(), entry.text(locale));
+        }
     }
 
     /**
@@ -29,11 +31,19 @@ public final class TrLanguageProvider extends LanguageProvider {
      * Registrate instead, since two providers can't write the same file.
      */
     public static void addAll(GatherDataEvent event, String modid, String prefix, boolean includeEnglish) {
+        addAll(event, modid, includeEnglish, prefix);
+    }
+
+    /**
+     * Same as {@link #addAll(GatherDataEvent, String, String, boolean)} for several key prefixes (for example
+     * {@code "item.mymod."}, {@code "block.mymod."} and {@code "mymod."}) written into one file per locale.
+     */
+    public static void addAll(GatherDataEvent event, String modid, boolean includeEnglish, String... prefixes) {
         PackOutput output = event.getGenerator().getPackOutput();
         for (String locale : Tr.LOCALES) {
             if (!includeEnglish && Tr.EN.equals(locale)) continue;
             event.getGenerator().addProvider(event.includeClient(),
-                    new TrLanguageProvider(output, modid, prefix, locale));
+                    new TrLanguageProvider(output, modid, locale, prefixes));
         }
     }
 }
