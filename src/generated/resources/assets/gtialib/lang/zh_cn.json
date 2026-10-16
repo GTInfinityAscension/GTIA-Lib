@@ -1,4 +1,5 @@
 {
+  "gtialib.module.auxiliary": "- 辅助模块：✔",
   "gtialib.tooltip.section.auxiliary": "辅助模块",
   "gtialib.tooltip.section.main": "主要功能",
   "gtialib.tooltip.section.requirements": "运行要求",
